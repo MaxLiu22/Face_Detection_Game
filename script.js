@@ -411,9 +411,15 @@ function startCountdown() {
 }
 
 // Event Listener for Space Key
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', async (event) => {
     if (event.code === 'Space') {
         event.preventDefault(); // Prevent default scrolling behavior
+        // 如果没有打开摄像头的话，先等待摄像头完成打开
+        if (!isCameraRunning) {
+            await camera.start();
+            isCameraRunning = true;
+            openCamBtn.textContent = "关闭摄像头";
+        }
         startCountdown();
     }
 });
