@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Direction Game</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- MediaPipe Face Mesh & Camera Utils -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    
+    <!-- Utilities -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- Background Canvas (for conic gradient - html2canvas compatible) -->
+    <canvas id="background_canvas" class="background-canvas"></canvas>
+
+    <div class="container">
+        <!-- Money Panel -->
+        <div class="money-panel">
+            已触及 <span id="money_display">0</span> 元
+        </div>
+
+        <!-- Side Panel (Controls) -->
+        <div class="side-panel">
+            <button class="open-cam-btn" id="open_cam_btn">开启摄像头</button>
+            
+            <!-- Countdown Panel -->
+            <div class="countdown-panel">
+                <div class="countdown-label">5s倒计时</div>
+                <div class="countdown-display">00 : 05</div>
+                <div class="countdown-instruction">按压 "空格键"<br>开启游戏</div>
+            </div>
+        </div>
+
+        <!-- Video Frame -->
+        <div class="video-frame">
+            <!-- Input Video (Hidden or underlying) -->
+            <video id="input_video" class="input_video" playsinline></video>
+        </div>
+    </div>
+    <!-- Drawing Canvas (Overlay) -->
+    <canvas id="output_canvas" class="output_canvas"></canvas>
+
+    <!-- Modal (Highest Layer) -->
+    <div id="game_modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close" id="modal_close_btn">&times;</button>
+            <div class="modal-body">
+                加载中...
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
