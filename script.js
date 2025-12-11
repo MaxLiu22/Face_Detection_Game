@@ -578,7 +578,16 @@ function startCountdown() {
             // setInterval usually runs somewhat in sync with render loop, but requestAnimationFrame is better.
             // We'll just call it.
             
+            // 截图前将"已触及"改为"恭喜获得"
+            const moneyPanel = document.querySelector('.money-panel');
+            const originalText = moneyPanel.innerHTML;
+            const moneyValue = document.getElementById('money_display').textContent;
+            moneyPanel.innerHTML = `恭喜获得 <span id="money_display">${moneyValue}</span> 元`;
+            
             captureScreen((dataURL) => {
+                // 截图后恢复原文字
+                moneyPanel.innerHTML = originalText;
+                
                 // 3. Update Modal with Screenshot
                 // Create an image element
                 const img = document.createElement('img');
