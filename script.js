@@ -194,12 +194,12 @@ openCamBtn.addEventListener('click', () => {
         // Start Camera
         camera.start();
         isCameraRunning = true;
-        openCamBtn.textContent = "Close Cam";
+        openCamBtn.textContent = "关闭摄像头";
     } else {
         // Stop Camera
         camera.stop(); // Assuming MediaPipe Camera utils supports stop()
         isCameraRunning = false;
-        openCamBtn.textContent = "Open Cam";
+        openCamBtn.textContent = "打开摄像头";
         
         // Optional: Clear canvas when camera stops
         canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
